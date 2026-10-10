@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://c3lubk77ar026"]
+
+[ext_resource type="Script" uid="uid://68em00w4l7tc" path="res://main.gd" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://nac4xnlfke3c" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://d2cs8eqqxg13u" path="res://assets/world/tiles/city_background_3600x1600.png" id="2_7mycd"]
+[ext_resource type="Script" uid="uid://cy6f8cbim5cyf" path="res://enemy_spawner.gd" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://cq035uro5uenp" path="res://attack.gd" id="4_7mycd"]
+[ext_resource type="Script" uid="uid://dnlpkdrphcnv1" path="res://world_bounds.gd" id="5_lquwl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7mycd"]
+radius = 145602050000.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
+
+[node name="main" type="Node2D" unique_id=1286054373]
+script = ExtResource("1_h2yge")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1232623705]
+position = Vector2(1357, 388)
+texture = ExtResource("2_7mycd")
+
+[node name="Ground" type="ColorRect" parent="." unique_id=1012423884]
+visible = false
+offset_left = -2.0
+offset_top = 5.0
+offset_right = 3198.0
+offset_bottom = 1205.0
+color = Color(0.22340268, 0.12739378, 0.08671341, 0.96862745)
+
+[node name="player" parent="." unique_id=1298081110 groups=["player"] instance=ExtResource("1_ig7tw")]
+position = Vector2(575, 301)
+speed = 40.0
+
+[node name="Camera2D" type="Camera2D" parent="player" unique_id=60253891]
+position = Vector2(0, 1)
+zoom = Vector2(4.21, 4.21)
+
+[node name="attack" type="Node2D" parent="player" unique_id=542523446]
+script = ExtResource("4_7mycd")
+
+[node name="JumpAttackArea" type="Area2D" parent="player" unique_id=1353750960]
+position = Vector2(-2, 1)
+scale = Vector2(1e-05, 1e-05)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player/JumpAttackArea" unique_id=761095256]
+scale = Vector2(1e-05, 1e-05)
+shape = SubResource("CircleShape2D_7mycd")
+
+[node name="EnemySpawner" type="Node2D" parent="." unique_id=1995244964 node_paths=PackedStringArray("Background")]
+script = ExtResource("3_h2yge")
+Background = NodePath("../Background")
+min_spawn_distance = 20.0
+spawn_interval = 1.0
+min_spawn_interval = 0.1
+interval_decrease_per_minute = 0.25
+max_enemies = 2000
+enemy2_chance = 0.328
+enemy3_chance = 0.339
+
+[node name="GameOverUI" type="CanvasLayer" parent="." unique_id=1110521886]
+process_mode = 3
+offset = Vector2(75, 0)
+transform = Transform2D(1, 0, 0, 1, 75, 0)
+
+[node name="Panel" type="Panel" parent="GameOverUI" unique_id=1600197227]
+offset_left = 300.0
+offset_top = 180.0
+offset_right = 700.0
+offset_bottom = 420.0
+
+[node name="GameOverLabel" type="Label" parent="GameOverUI/Panel" unique_id=1952432320]
+layout_mode = 0
+offset_top = 35.0
+offset_right = 400.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 36
+text = "GAME OVER!"
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="GameOverUI/Panel" unique_id=1767848650]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 150.0
+offset_right = 275.0
+offset_bottom = 200.0
+text = "Restart"
+
+[node name="WorldBounds" type="StaticBody2D" parent="." unique_id=1120048552 node_paths=PackedStringArray("Background")]
+script = ExtResource("5_lquwl")
+Background = NodePath("../Background")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds" unique_id=1582627970]
+shape = SubResource("RectangleShape2D_7mycd")
+
+[connection signal="pressed" from="GameOverUI/Panel/RestartButton" to="." method="_on_restart_button_pressed"]

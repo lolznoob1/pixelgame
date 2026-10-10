@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://ctn60i2kw641u"]
+
+[ext_resource type="Script" uid="uid://b1fbjx4q7assl" path="res://enemy_stats.gd" id="1_tmkob"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1cqo6"]
+
+[resource]
+script = ExtResource("1_tmkob")
+display_name = "Enemy3"
+contact_damage = 2.0
+speed_multiplier = 1.595
+sprite_frames = SubResource("SpriteFrames_1cqo6")
+metadata/_custom_type_script = "uid://b1fbjx4q7assl"
