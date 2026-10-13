@@ -1,0 +1,15 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://weapons/rocket_projectile.gd" id="1_rocket"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rocket"]
+radius = 4.0
+
+[node name="Rocket" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_rocket")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rocket")
