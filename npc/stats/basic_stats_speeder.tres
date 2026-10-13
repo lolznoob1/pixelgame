@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="NpcStats" format=3 uid="uid://ctn60i2kw641u"]
+
+[ext_resource type="Script" uid="uid://b1fbjx4q7assl" path="res://npc/npc_stats.gd" id="1_tmkob"]
+
+
+[ext_resource type="Resource" path="res://assets/characters/dirs/enemy3_dirs.tres" id="13_dirs"]
+
+[ext_resource type="Texture2D" path="res://assets/characters/death/enemy3_death_heavy.png" id="14_death"]
+[ext_resource type="Texture2D" path="res://assets/characters/death/enemy3_death_light.png" id="15_death_light"]
+
+[resource]
+script = ExtResource("1_tmkob")
+display_name = "Enemy3"
+contact_damage = 2.0
+speed_multiplier = 1.595
+metadata/_custom_type_script = "uid://b1fbjx4q7assl"
+armor = 5.0
+direction_sheet = ExtResource("13_dirs")
+death_sheet_heavy = ExtResource("14_death")
+death_sheet_light = ExtResource("15_death_light")
+npc_type = 0
