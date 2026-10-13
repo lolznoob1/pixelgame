@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DirectionalSheet" format=3]
+
+[ext_resource type="Script" path="res://characters/directional_sheet.gd" id="1_sheet"]
+[ext_resource type="Texture2D" path="res://assets/characters/dirs/enemy1_dirs.png" id="2_tex"]
+
+[resource]
+script = ExtResource("1_sheet")
+texture = ExtResource("2_tex")
+anim_names = PackedStringArray("idle", "walk")
+frame_counts = PackedInt32Array(4, 4)
+frame_size = 16
