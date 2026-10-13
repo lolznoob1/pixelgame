@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" format=3]
+
+[ext_resource type="Script" path="res://items/item_data.gd" id="1_item"]
+[ext_resource type="Texture2D" path="res://assets/items/stamina_drink.png" id="2_tex"]
+
+[resource]
+script = ExtResource("1_item")
+id = &"stamina_drink"
+display_name = "Stamina Drink"
+category = 0
+effect = 1
+amount = 25.0
+duration = 0.0
+texture = ExtResource("2_tex")
+tint = Color(1, 1, 1, 1)
